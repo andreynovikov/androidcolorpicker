@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.colorpicker;
+package info.andreynovikov.androidcolorpicker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
+import info.andreynovikov.androidcolorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 /**
  * A dialog which takes in as input an array of colors and creates a palette allowing the user to

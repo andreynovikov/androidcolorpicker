@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.colorpicker;
+package info.andreynovikov.androidcolorpicker;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;

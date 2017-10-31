@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package com.android.colorpicker;
+package info.andreynovikov.androidcolorpicker;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -43,6 +45,13 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         public void onColorSelected(int color);
     }
 
+    public ColorPickerSwatch(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        LayoutInflater.from(context).inflate(R.layout.color_picker_swatch, this);
+        mSwatchImage = (ImageView) findViewById(R.id.color_picker_swatch);
+        setColor(Color.BLACK);
+    }
+
     public ColorPickerSwatch(Context context, int color, boolean checked,
             OnColorSelectedListener listener) {
         super(context);
@@ -57,7 +66,12 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         setOnClickListener(this);
     }
 
-    protected void setColor(int color) {
+    public int getColor() {
+        return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
         Drawable[] colorDrawable = new Drawable[]
                 {getContext().getResources().getDrawable(R.drawable.color_picker_swatch)};
         mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));

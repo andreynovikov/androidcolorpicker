@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.colorpicker;
+package info.andreynovikov.androidcolorpicker;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.android.colorpicker.ColorPickerSwatch.OnColorSelectedListener;
+import info.andreynovikov.androidcolorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
 /**
  * A color picker custom view which creates an grid of color squares.  The number of squares per
@@ -97,6 +97,7 @@ public class ColorPickerPalette extends TableLayout {
         int tableElements = 0;
         int rowElements = 0;
         int rowNumber = 0;
+        boolean hasSelectedColor = false;
 
         // Fills the table with swatches based on the array of colors.
         TableRow row = createTableRow();
@@ -107,6 +108,22 @@ public class ColorPickerPalette extends TableLayout {
             addSwatchToRow(row, colorSwatch, rowNumber);
 
             tableElements++;
+            rowElements++;
+            if (rowElements == mNumColumns) {
+                addView(row);
+                row = createTableRow();
+                rowElements = 0;
+                rowNumber++;
+            }
+            if (color == selectedColor)
+                hasSelectedColor = true;
+        }
+        if (!hasSelectedColor) {
+            View colorSwatch = createColorSwatch(selectedColor, selectedColor);
+            setSwatchDescription(rowNumber, tableElements, rowElements, true,
+                    colorSwatch, colorContentDescriptions);
+            addSwatchToRow(row, colorSwatch, rowNumber);
+
             rowElements++;
             if (rowElements == mNumColumns) {
                 addView(row);
