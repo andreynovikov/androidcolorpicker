@@ -19,11 +19,13 @@ package info.andreynovikov.androidcolorpicker;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 import info.andreynovikov.androidcolorpicker.ColorPickerSwatch.OnColorSelectedListener;
 
@@ -104,13 +106,14 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
         }
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Activity activity = getActivity();
 
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.color_picker_dialog, null);
-        mProgress = (ProgressBar) view.findViewById(android.R.id.progress);
-        mPalette = (ColorPickerPalette) view.findViewById(R.id.color_picker);
+        mProgress = view.findViewById(android.R.id.progress);
+        mPalette = view.findViewById(R.id.color_picker);
         mPalette.init(mSize, mColumns, this);
 
         if (mColors != null) {
@@ -205,7 +208,7 @@ public class ColorPickerDialog extends DialogFragment implements OnColorSelected
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putIntArray(KEY_COLORS, mColors);
         outState.putInt(KEY_SELECTED_COLOR, mSelectedColor);

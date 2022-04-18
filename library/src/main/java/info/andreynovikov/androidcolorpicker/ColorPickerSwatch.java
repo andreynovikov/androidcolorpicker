@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 /**
  * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.
  */
@@ -42,13 +44,13 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         /**
          * Called when a specific color square has been selected.
          */
-        public void onColorSelected(int color);
+        void onColorSelected(int color);
     }
 
     public ColorPickerSwatch(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.color_picker_swatch, this);
-        mSwatchImage = (ImageView) findViewById(R.id.color_picker_swatch);
+        mSwatchImage = findViewById(R.id.color_picker_swatch);
         setColor(Color.BLACK);
     }
 
@@ -59,8 +61,8 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
         mOnColorSelectedListener = listener;
 
         LayoutInflater.from(context).inflate(R.layout.color_picker_swatch, this);
-        mSwatchImage = (ImageView) findViewById(R.id.color_picker_swatch);
-        mCheckmarkImage = (ImageView) findViewById(R.id.color_picker_checkmark);
+        mSwatchImage = findViewById(R.id.color_picker_swatch);
+        mCheckmarkImage = findViewById(R.id.color_picker_checkmark);
         setColor(color);
         setChecked(checked);
         setOnClickListener(this);
@@ -73,7 +75,7 @@ public class ColorPickerSwatch extends FrameLayout implements View.OnClickListen
     public void setColor(int color) {
         mColor = color;
         Drawable[] colorDrawable = new Drawable[]
-                {getContext().getResources().getDrawable(R.drawable.color_picker_swatch)};
+                {ResourcesCompat.getDrawable(getContext().getResources(), R.drawable.color_picker_swatch, getContext().getTheme())};
         mSwatchImage.setImageDrawable(new ColorStateDrawable(colorDrawable, color));
     }
 
