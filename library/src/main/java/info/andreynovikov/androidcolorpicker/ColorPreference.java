@@ -56,7 +56,7 @@ public class ColorPreference extends Preference {
     }
 
     public ColorPreference(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, android.R.attr.preferenceStyle);
+        this(context, attrs, R.attr.preferenceStyle);
     }
 
     public ColorPreference(@NonNull Context context) {
