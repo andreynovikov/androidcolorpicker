@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
 
 group = 'info.andreynovikov.androidcolorpicker'
-version = '0.0.4'
+version = '0.0.6'
 
 android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 34
         compileSdk 34
-        versionCode 3
-        versionName "0.0.4"
+        versionCode 4
+        versionName "0.0.6"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
